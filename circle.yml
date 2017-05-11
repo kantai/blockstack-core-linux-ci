@@ -4,7 +4,7 @@ checkout:
     - git submodule update --init
 dependencies:
   pre:
-    - sudo apt install python-dev libssl-dev libffi-dev rng-tools build-essentials
+    - sudo apt update && sudo apt install python-dev libssl-dev libffi-dev rng-tools build-essential
     - ../virtualenvs/venv-system/bin/pip install git+https://github.com/blockstack/virtualchain.git@rc-0.14.2
 compile:
   override:
