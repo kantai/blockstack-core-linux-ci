@@ -1,0 +1,4 @@
+[submodule "blockstack-core"]
+	path = blockstack-core
+	url = https://github.com/blockstack/blockstack-core.git
+	branch = rc-0.14.2
