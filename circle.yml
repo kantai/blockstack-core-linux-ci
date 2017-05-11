@@ -5,18 +5,18 @@ checkout:
 dependencies:
   pre:
     - sudo apt update && sudo apt install python-dev libssl-dev libffi-dev rng-tools build-essential
-    - ../virtualenvs/venv-system/bin/pip install git+https://github.com/blockstack/virtualchain.git@rc-0.14.2
+    - pip install git+https://github.com/blockstack/virtualchain.git@rc-0.14.2
 compile:
   override:
-    - ../virtualenvs/venv-system/bin/pip install ./blockstack-core
+    - pip install ./blockstack-core
   post:
-    - ../virtualenvs/venv-system/bin/pip install ./blockstack-core/integration_tests
+    - pip install ./blockstack-core/integration_tests
 test:
   pre:
     - blockstack setup -y --password PASSWORD
     - blockstack api start -y --password PASSWORD
   override:
     - mkdir $CIRCLE_TEST_REPORTS/django
-    - ../virtualenvs/venv-system/bin/python -m blockstack_integration_tests.live_tests.api_tests --xunit-path "$CIRCLE_TEST_REPORTS/django/" --all
+    - python -m blockstack_integration_tests.live_tests.api_tests --xunit-path "$CIRCLE_TEST_REPORTS/django/" --all
   post:
     - blockstack api stop -y
